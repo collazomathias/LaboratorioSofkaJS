@@ -116,13 +116,13 @@ class Ball {
         this.y = y;
         this.radius = radius;
         this.board = board;
-        this.speed_y = 0;
-        this.speed_x = 3;
+        this.speed_y = 1;
+        this.speed_x = 6;
         this.direction = 1;
         this.bounce_angle = 0;
         this.max_bounce_angle = Math.PI / 12;
         this.kind = "circle";
-        this.speed = 3;
+        this.speed = 6;
         board.ball = this;
     }
 
@@ -180,6 +180,17 @@ document.addEventListener("keydown", function(event){
     } else if(event.keyCode == 32){
         event.preventDefault();
         board.playing = !board.playing;
+    } else if(event.keyCode == 82){
+        event.preventDefault();
+        board.playing = false;
+        ball.x = 350;
+        ball.y = 100;
+        barIzq.x = 10;
+        barIzq.y = 100;
+        barDer.x = 750;
+        barDer.y = 100;
+        board_view.clean();
+        board_view.draw();
     }
 });
 
