@@ -163,24 +163,20 @@ var ball = new Ball(350, 100, 10, board);
 
 board_view.draw();
 window.requestAnimationFrame(controller);
-setTimeout(function(){
-    ball.direction = -1;
-}, 4000);
 
 document.addEventListener("keydown", function(event){
-    console.log(barIzq.toString(), barDer.toString());
     if(event.keyCode == 38){
         event.preventDefault();
-        barIzq.up();
+        barDer.up();
     } else if(event.keyCode == 40){
         event.preventDefault();
-        barIzq.down();
+        barDer.down();
     } else if(event.keyCode == 87){
         event.preventDefault();
-        barDer.up();
+        barIzq.up();
     } else if(event.keyCode == 83){
         event.preventDefault();
-        barDer.down();
+        barIzq.down();
     } else if(event.keyCode == 32){
         event.preventDefault();
         board.playing = !board.playing;
