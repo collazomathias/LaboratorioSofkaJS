@@ -182,17 +182,26 @@ document.addEventListener("keydown", function(event){
         board.playing = !board.playing;
     } else if(event.keyCode == 82){
         event.preventDefault();
-        board.playing = false;
-        ball.x = 350;
-        ball.y = 100;
-        barIzq.x = 10;
-        barIzq.y = 100;
-        barDer.x = 750;
-        barDer.y = 100;
-        board_view.clean();
-        board_view.draw();
+        reset();
     }
 });
+
+function reset(){
+    board.playing = false;
+    ball.x = 350;
+    ball.y = 100;
+    ball.direction = 1;
+    ball.bounce_angle = 0;
+    ball.max_bounce_angle = Math.PI / 12;
+    ball.speed_y = 1;
+    ball.speed_x = 6;
+    barIzq.x = 10;
+    barIzq.y = 100;
+    barDer.x = 750;
+    barDer.y = 100;
+    board_view.clean();
+    board_view.draw();
+}
 
 function controller(){
     board_view.play();
