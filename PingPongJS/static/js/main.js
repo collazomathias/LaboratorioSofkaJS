@@ -65,7 +65,9 @@ class BoardView{
         if(parseInt(b.x) < 0){
             var puntajeDer = document.getElementById("puntajeDer").innerHTML;
             if(puntajeDer == 5){
-                resetGame();
+                const music = new Audio('static/sound/3.wav');
+                music.play();
+                finishGame();
             } else {
                 const music = new Audio('static/sound/3.wav');
                 music.play();
@@ -231,7 +233,23 @@ document.addEventListener("keydown", function(event){
     }
 });
 
+function finishGame(){
+    board.playing = false;
+    var resIzq = document.getElementById("puntajeIzq").innerHTML;
+    var resDer = document.getElementById("puntajeDer").innerHTML;
+    document.getElementById("puntajeDer").innerHTML = 0;
+    document.getElementById("puntajeIzq").innerHTML = 0;
+    if(resIzq > resDer)
+        resIzq++;
+    else
+        resDer++;
+    document.getElementById("modalFinish").style.display = "flex";
+    document.getElementById("resultadoIzq").innerHTML = resIzq;
+    document.getElementById("resultadoDer").innerHTML = resDer;
+}
+
 function resetGame(){
+    document.getElementById("modalFinish").style.display = "none";
     board.playing = false;
     ball.x = 350;
     ball.y = 100;

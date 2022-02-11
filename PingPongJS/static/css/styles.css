@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     background: linear-gradient(to left top, #460853, #932751, #c2634b, #d4a85a, #d1ec95);
 }
 
@@ -74,5 +75,61 @@ canvas {
     border: 7px solid white;
     margin: 30px 30px;
     background-image: url(../img/fondoPong.png);
+}
+
+#modalFinish {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+}
+
+#modalFinish .contenidoModal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 500px;
+    background-color: rgba(0,0,0,0.8);
+    border-radius: 16px;
+}
+
+#modalFinish #closeModal {
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    font-size: 72px;
+    font-weight: bold;
+    color: lightyellow;
+    transition: 0.5s;
+    background: none !important;
+    border: none !important;
+}
+
+#modalFinish #closeModal:hover {
+    cursor: pointer;
+    filter: brightness(2);
+}
+
+#modalFinish h1 {
+    margin: 0;
+    text-transform: uppercase;
+    color: lightyellow;
+    font-size: 72px;
+}
+
+#modalFinish .result{
+    padding: 10px 150px;
+    margin: 20px;
+    border: 2px solid white;
+    background-color: rgba(0,0,0,0.1);
 }
 
