@@ -48,10 +48,12 @@ class BoardView{
         switch(element.kind){
             case "rectangle":
                 context.fillRect(element.x, element.y, element.width, element.height);
+                context.fillStyle = "#FFFFFF";
                 break;
             case "circle":
                 context.beginPath();
                 context.arc(element.x, element.y, element.radius, 0, 7);
+                context.fillStyle = "#FFFFFF";
                 context.fill();
                 context.closePath();
                 break;
@@ -65,14 +67,18 @@ class BoardView{
             if(puntajeDer == 5){
                 resetGame();
             } else {
+                const music = new Audio('static/sound/3.wav');
+                music.play();
                 document.getElementById("puntajeDer").innerHTML = (parseInt(puntajeDer) + 1);
                 resetPoint();
             }
-        }else if(parseInt(b.x) > 800){
+        }else if(parseInt(b.x) > this.board.width){
             var puntajeIzq = document.getElementById("puntajeIzq").innerHTML;
             if(puntajeIzq == 5){
                 resetGame();
             } else {
+                const music = new Audio('static/sound/3.wav');
+                music.play();
                 document.getElementById("puntajeIzq").innerHTML = (parseInt(puntajeIzq) + 1);
                 resetPoint();
             }
@@ -80,9 +86,26 @@ class BoardView{
     }
 
     check_collision(){
+        var music;
+        var b = this.board.ball;
+        if((b.y - b.radius) < 0 || b.y + b.radius > this.board.height){
+            b.speed_y *= -1;
+            if((Math.random() * 100) > 50){
+                music = new Audio('static/sound/1.wav');
+            } else {
+                music = new Audio('static/sound/2.wav');
+            }
+            music.play();
+        }
         for(var i = this.board.bars.length - 1; i >= 0; i--){
             var bar = this.board.bars[i];
             if(hit(bar, this.board.ball)){
+                if((Math.random() * 100) > 50){
+                    music = new Audio('static/sound/1.wav');
+                } else {
+                    music = new Audio('static/sound/2.wav');
+                }
+                music.play();
                 this.board.ball.collision(bar);
             }
         }
@@ -116,7 +139,7 @@ class Bar{
         this.board = board;
         this.board.bars.push(this);
         this.kind = "rectangle";
-        this.speed = 10;
+        this.speed = 15;
     }
 
     down(){
@@ -138,13 +161,13 @@ class Ball {
         this.y = y;
         this.radius = radius;
         this.board = board;
-        this.speed_y = 1;
-        this.speed_x = 6;
+        this.speed_y = 2;
+        this.speed_x = 10;
         this.direction = 1;
         this.bounce_angle = 0;
         this.max_bounce_angle = Math.PI / 12;
         this.kind = "circle";
-        this.speed = 6;
+        this.speed = 10;
         board.ball = this;
     }
 
@@ -176,10 +199,10 @@ class Ball {
     }
 }
 
-var board = new Board(800, 400);
+var board = new Board(1000, 500);
 var canvas = document.getElementById("canvas");
-var barIzq = new Bar(10, 100, 40, 100, board);
-var barDer = new Bar(750, 100, 40, 100, board);
+var barIzq = new Bar(10, (this.board.height / 2) - 50, 40, 100, board);
+var barDer = new Bar(this.board.width - 50, (this.board.height / 2) - 50, 40, 100, board);
 var board_view = new BoardView(canvas, board);
 var ball = new Ball(350, 100, 10, board);
 
@@ -215,12 +238,13 @@ function resetGame(){
     ball.direction = 1;
     ball.bounce_angle = 0;
     ball.max_bounce_angle = Math.PI / 12;
-    ball.speed_y = 1;
-    ball.speed_x = 6;
+    ball.speed_y = 2;
+    ball.speed_x = 10;
+    ball.speed = 10;
     barIzq.x = 10;
-    barIzq.y = 100;
-    barDer.x = 750;
-    barDer.y = 100;
+    barIzq.y = (this.board.height / 2) - 50;
+    barDer.x = this.board.width - 50;
+    barDer.y = (this.board.height / 2) - 50;
     board_view.clean();
     board_view.draw();
     document.getElementById("puntajeDer").innerHTML = 0;
@@ -234,12 +258,13 @@ function resetPoint(){
     ball.direction = 1;
     ball.bounce_angle = 0;
     ball.max_bounce_angle = Math.PI / 12;
-    ball.speed_y = 1;
-    ball.speed_x = 6;
+    ball.speed_y = 2;
+    ball.speed_x = 10;
+    ball.speed = 10;
     barIzq.x = 10;
-    barIzq.y = 100;
-    barDer.x = 750;
-    barDer.y = 100;
+    barIzq.y = (this.board.height / 2) - 50;
+    barDer.x = this.board.width - 50;
+    barDer.y = (this.board.height / 2) - 50;
     board_view.clean();
     board_view.draw();
 }
