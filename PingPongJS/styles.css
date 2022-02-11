@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-body {
+#container {
     position: absolute;
     top: 0;
     left: 0;
@@ -13,42 +13,53 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: linear-gradient(to left top, #460853, #932751, #c2634b, #d4a85a, #d1ec95);
+}
+
+#funcionesJuego {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0,0,0,0.1);
+    border: 2px solid white;
+    padding: 15px;
 }
 
 h1 {
     font-size: 72px;
     font-weight: bold;
-    color: goldenrod;
+    color: lightyellow;
     margin-top: 50px;
 }
 
 h2 {
     font-size: 42px;
     font-weight: bold;
-    color: goldenrod;
+    color: lightyellow;
     margin-bottom: 50px;
 }
 
 h3 {
     font-size: 15px;
-    color: grey;
+    color: white;
     text-transform: uppercase;
 }
 
 p {
     font-size: 15px;
-    color: grey;
+    color: white;
     text-transform: uppercase;
 }
 
 p span {
     font-weight: bold;
-    color: goldenrod;
+    color: lightyellow;
 }
 
 canvas {
     max-width: 800px;
-    border: 10px solid;
+    border: 7px solid;
     margin: 30px 0;
+    background-image: url(img/fondoPong.png);
 }
 
