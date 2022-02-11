@@ -63,3 +63,22 @@ canvas {
     background-image: url(img/fondoPong.png);
 }
 
+#puntajeIzq {
+    position: absolute;
+    top: 435px;
+    left: 410px;
+    padding: 5px 30px;
+    border: 2px solid white;
+    background: rgba(0,0,0,0.1);
+}
+
+
+#puntajeDer {
+    position: absolute;
+    top: 435px;
+    right: 410px;
+    padding: 5px 30px;
+    border: 2px solid white;
+    background: rgba(0,0,0,0.1);
+}
+

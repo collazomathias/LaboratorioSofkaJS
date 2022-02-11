@@ -28,6 +28,7 @@ class BoardView{
             this.clean();
             this.draw();
             this.check_collision();
+            this.check_point();
             this.board.ball.move();
         }
     }
@@ -54,6 +55,27 @@ class BoardView{
                 context.fill();
                 context.closePath();
                 break;
+        }
+    }
+
+    check_point(){
+        var b = this.board.ball;
+        if(parseInt(b.x) < 0){
+            var puntajeDer = document.getElementById("puntajeDer").innerHTML;
+            if(puntajeDer == 5){
+                resetGame();
+            } else {
+                document.getElementById("puntajeDer").innerHTML = (parseInt(puntajeDer) + 1);
+                resetPoint();
+            }
+        }else if(parseInt(b.x) > 800){
+            var puntajeIzq = document.getElementById("puntajeIzq").innerHTML;
+            if(puntajeIzq == 5){
+                resetGame();
+            } else {
+                document.getElementById("puntajeIzq").innerHTML = (parseInt(puntajeIzq) + 1);
+                resetPoint();
+            }
         }
     }
 
@@ -182,11 +204,30 @@ document.addEventListener("keydown", function(event){
         board.playing = !board.playing;
     } else if(event.keyCode == 82){
         event.preventDefault();
-        reset();
+        resetGame();
     }
 });
 
-function reset(){
+function resetGame(){
+    board.playing = false;
+    ball.x = 350;
+    ball.y = 100;
+    ball.direction = 1;
+    ball.bounce_angle = 0;
+    ball.max_bounce_angle = Math.PI / 12;
+    ball.speed_y = 1;
+    ball.speed_x = 6;
+    barIzq.x = 10;
+    barIzq.y = 100;
+    barDer.x = 750;
+    barDer.y = 100;
+    board_view.clean();
+    board_view.draw();
+    document.getElementById("puntajeDer").innerHTML = 0;
+    document.getElementById("puntajeIzq").innerHTML = 0;
+}
+
+function resetPoint(){
     board.playing = false;
     ball.x = 350;
     ball.y = 100;
