@@ -77,7 +77,9 @@ class BoardView{
         }else if(parseInt(b.x) > this.board.width){
             var puntajeIzq = document.getElementById("puntajeIzq").innerHTML;
             if(puntajeIzq == 5){
-                resetGame();
+                const music = new Audio('static/sound/3.wav');
+                music.play();
+                finishGame();
             } else {
                 const music = new Audio('static/sound/3.wav');
                 music.play();
